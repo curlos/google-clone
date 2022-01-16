@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import SearchTypes from './SearchTypes'
 import All from './All'
 import News from './News'
+import Images from './Images'
+import Videos from './Videos'
 import Loader from './Loader'
 import axios from 'axios'
 import { useSearchParams } from 'react-router-dom'
@@ -23,8 +25,6 @@ const Results = () => {
           return 'news'
         case 'Images':
           return 'images'
-        case 'Videos':
-          return 'images'
         default:
           return 'search'
       }
@@ -33,9 +33,11 @@ const Results = () => {
     if (searchParams.get('search')) {
       setLoading(true)
 
+      console.log(`https://google-search3.p.rapidapi.com/api/v1/${getSearchTypeForAPI()}/q=${searchParams.get('search') + `${searchType === 'Videos' ? ' videos' : ''}`}&num=100`)
+
       const options = {
         method: 'GET',
-        url: `https://google-search3.p.rapidapi.com/api/v1/${getSearchTypeForAPI()}/q=${searchParams.get('search')}&num=100`,
+        url: `https://google-search3.p.rapidapi.com/api/v1/${getSearchTypeForAPI()}/q=${searchParams.get('search') + `${searchType === 'Videos' ? ' videos' : ''}`}&num=100`,
         headers: {
           'x-user-agent': 'desktop',
           'x-proxy-location': 'US',
@@ -65,6 +67,10 @@ const Results = () => {
         return <All resultsInfo={resultsInfo}/>
       case 'News':
         return <News resultsInfo={resultsInfo}/>
+      case 'Images':
+        return <Images resultsInfo={resultsInfo} />
+      case 'Videos':
+        return <Videos resultsInfo={resultsInfo} />
       default:
         return <All resultsInfo={resultsInfo}/>
     }
@@ -75,9 +81,7 @@ const Results = () => {
     setLoading(true)
   }
 
-  console.log(searchParams)
-  console.log(searchParams.get('search'))
-  console.log(resultsInfo)
+  console.log(searchType)
 
   return (
     <div className="text-white">
