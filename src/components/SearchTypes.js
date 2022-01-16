@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { SearchIcon, NewspaperIcon, BookmarkIcon, VideoCameraIcon, PhotographIcon } from '@heroicons/react/solid'
+import { SearchIcon, NewspaperIcon, VideoCameraIcon, PhotographIcon } from '@heroicons/react/solid'
 
 const SEARCH_TYPES = {
   'All': SearchIcon, 
-  'News': NewspaperIcon, 
-  'Books': BookmarkIcon, 
-  'Videos': VideoCameraIcon, 
-  'Images': PhotographIcon
+  'News': NewspaperIcon,
+  'Images': PhotographIcon,
+  'Videos': VideoCameraIcon
 }
 
 const SearchTypes = ({ searchType, handleChangeSearchType }) => {

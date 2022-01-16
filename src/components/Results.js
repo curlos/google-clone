@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SearchTypes from './SearchTypes'
+import All from './All'
+import News from './News'
 import Loader from './Loader'
 import axios from 'axios'
 import { useSearchParams } from 'react-router-dom'
@@ -12,12 +14,28 @@ const Results = () => {
   const [searchParams] = useSearchParams()
 
   useEffect(() => {
+
+    const getSearchTypeForAPI = () => {
+      switch (searchType) {
+        case 'All':
+          return 'search'
+        case 'News':
+          return 'news'
+        case 'Images':
+          return 'images'
+        case 'Videos':
+          return 'images'
+        default:
+          return 'search'
+      }
+    }
+
     if (searchParams.get('search')) {
       setLoading(true)
 
       const options = {
         method: 'GET',
-        url: `https://google-search3.p.rapidapi.com/api/v1/search/q=${searchParams.get('search')}&num=100`,
+        url: `https://google-search3.p.rapidapi.com/api/v1/${getSearchTypeForAPI()}/q=${searchParams.get('search')}&num=100`,
         headers: {
           'x-user-agent': 'desktop',
           'x-proxy-location': 'US',
@@ -36,25 +54,30 @@ const Results = () => {
       })
     }
 
-  }, [searchParams])
+  }, [searchParams, searchType])
 
-  const getSearchTypeForAPI = () => {
+  const getResults = () => {
+
+    console.log(searchType)
+
     switch (searchType) {
       case 'All':
-        return 'search'
-      case 'Images':
-        return 'images'
+        return <All resultsInfo={resultsInfo}/>
+      case 'News':
+        return <News resultsInfo={resultsInfo}/>
       default:
-        return 'search'
+        return <All resultsInfo={resultsInfo}/>
     }
   }
 
   const handleChangeSearchType = (newSearchType) => {
     setSearchType(newSearchType)
+    setLoading(true)
   }
 
   console.log(searchParams)
   console.log(searchParams.get('search'))
+  console.log(resultsInfo)
 
   return (
     <div className="text-white">
@@ -65,22 +88,7 @@ const Results = () => {
           <Loader />
         </div>
       ) : (
-        <div className="px-8 py-5">
-          {resultsInfo.results.map((result) => (
-            result.description && result.cite && result.cite.domain ? (
-              <div className="mb-6">
-                <div>
-                  <span className="text-gray-200">{result.cite.domain.split('›')[0]}</span>
-                  <span className="text-gray-400"> › {result.cite.domain.split('›').slice(1,).join('›')}</span>
-                </div>
-                <div>
-                  <a href={result.link} className="text-blue-300 cursor-pointer hover:underline">{result.title}</a>
-                </div>
-                <div className="text-gray-400">{result.description}</div>
-              </div>
-            ) : null
-          ))}
-        </div>
+        getResults()
       )}
     </div>
   )

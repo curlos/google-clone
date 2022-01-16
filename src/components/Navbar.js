@@ -4,13 +4,12 @@ import { useNavigate } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
 
 const Navbar = () => {
-  
+
   const [searchParams] = useSearchParams()
   const [query, setQuery] = useState(searchParams.get('search'))
   const navigate = useNavigate()
 
   const handleSearch = (e) => {
-    console.log('hello ')
     e.preventDefault();
     navigate(`/?search=${query}`)
   }
