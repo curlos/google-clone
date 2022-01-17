@@ -10,7 +10,7 @@ const SEARCH_TYPES = {
 
 const SearchTypes = ({ searchType, handleChangeSearchType }) => {
   return (
-    <div className="text-white px-8 flex gap-7 border-b border-gray-500">
+    <div className="text-white px-2 md:px-8 md:pl-[165px] flex justify-around md:justify-start md:gap-7 border-b border-gray-500">
       {Object.keys(SEARCH_TYPES).map((type) => {
 
         const Icon = SEARCH_TYPES[type]

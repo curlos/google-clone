@@ -2,7 +2,7 @@ import React from 'react'
 
 const All = ({ resultsInfo }) => {
   return (
-    <div className="px-8 py-5">
+    <div className="px-2 md:px-8 py-5 md:pl-[165px] md:w-[80%]">
       {resultsInfo.results.map((result) => (
         result.description && result.cite && result.cite.domain ? (
           <div className="mb-6">

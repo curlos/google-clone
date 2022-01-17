@@ -15,10 +15,12 @@ const Navbar = () => {
   }
 
   return (
-    <div className="flex items-center gap-4 p-8">
-      <img src="/assets/google.svg.png" alt="Google" className="h-[40px]"/>
+    <div className="md:flex items-center gap-4 p-3 md:p-8">
+      <div className="flex justify-center items-center mb-4 md:mb-0">
+        <img src="/assets/google.svg.png" alt="Google" className="h-[40px]"/>
+      </div>
 
-      <form className="text-white bg-gray-600 rounded-full p-2 flex justify-between items-center w-1/2" onSubmit={handleSearch}>
+      <form className="text-white bg-gray-600 rounded-full p-2 flex justify-between items-center w-full md:w-3/5" onSubmit={handleSearch}>
         <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} className="flex-1 bg-gray-600 outline-none ml-2"/>
 
         <button type="submit" className="border-l border-gray-400 px-2 ml-2">
