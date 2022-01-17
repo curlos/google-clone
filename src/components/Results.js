@@ -84,7 +84,7 @@ const Results = () => {
   console.log(searchType)
 
   return (
-    <div className="text-white">
+    <div className="text-white min-h-[90vh]">
       <SearchTypes searchType={searchType} handleChangeSearchType={handleChangeSearchType} />
 
       {loading ? (

@@ -11,18 +11,18 @@ const Videos = ({ resultsInfo }) => {
         result.description && result.cite && result.cite.domain && result.additional_links && result.additional_links.length >= 1 ? (
           <div className="mb-6">
             <div>
-              <span className="text-gray-200">{result.cite.domain.split('›')[0]}</span>
+              <span className="text-gray-500 dark:text-gray-200">{result.cite.domain.split('›')[0]}</span>
               <span className="text-gray-400"> › {result.cite.domain.split('›').slice(1,).join('›')}</span>
             </div>
             <div>
-              <a href={result.link} className="text-blue-300 cursor-pointer hover:underline">{result.title}</a>
+              <a href={result.link} className="text-blue-700 dark:text-blue-300 cursor-pointer hover:underline text-lg">{result.title}</a>
             </div>
 
             <div className="md:flex gap-3">
               <div className="relative p-t-[56.25%]">
                 <ReactPlayer url={result.additional_links[0].href} width="100%" height="100%" controls="true" className="absolute top-0 left-0"/>
               </div>
-              <div className="text-gray-400">{result.description}</div>
+              <div className="text-gray-500 dark:text-gray-400">{result.description}</div>
             </div>
             
           </div>

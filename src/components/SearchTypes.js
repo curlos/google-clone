@@ -10,15 +10,15 @@ const SEARCH_TYPES = {
 
 const SearchTypes = ({ searchType, handleChangeSearchType }) => {
   return (
-    <div className="text-white px-2 md:px-8 md:pl-[165px] flex justify-around md:justify-start md:gap-7 border-b border-gray-500">
+    <div className="text-white px-2 md:px-8 md:pl-[165px] flex justify-around md:justify-start md:gap-7 border-b border-gray-400 dark:border-gray-500">
       {Object.keys(SEARCH_TYPES).map((type) => {
 
         const Icon = SEARCH_TYPES[type]
 
         return (
-          <div className={`flex items-center gap-1 pb-2 cursor-pointer ${searchType === type ? 'border-b-[3px] border-blue-300' : ''}`} onClick={() => handleChangeSearchType(type)}>
-            <Icon className={`h-5 w-5 ${searchType === type ? 'text-blue-300' : 'text-gray-400'}`} />
-            <span className={`${searchType === type ? 'text-blue-300' : 'text-gray-400'}`}>{type}</span>
+          <div className={`flex items-center gap-1 pb-2 cursor-pointer ${searchType === type ? 'border-b-[3px] border-blue-700 dark:border-blue-300' : ''}`} onClick={() => handleChangeSearchType(type)}>
+            <Icon className={`h-5 w-5 ${searchType === type ? 'text-blue-700 dark:text-blue-300' : 'text-gray-500 dark:text-gray-400'}`} />
+            <span className={`${searchType === type ? 'text-blue-700 dark:text-blue-300' : 'text-gray-500 dark:text-gray-400'}`}>{type}</span>
           </div>
         )
       })}
