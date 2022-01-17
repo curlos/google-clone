@@ -10,7 +10,6 @@ body {
 /* Toggle B */
 #toggleB:checked ~ .dot {
   transform: translateX(100%);
-  background-color: #48bb78;
 }
 
 .shadow-outline { box-shadow: 0 4px 10px 1px #CCCCCC; }
